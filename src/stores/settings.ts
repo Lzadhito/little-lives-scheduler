@@ -24,8 +24,8 @@ const settingsStore = create(
   persist<Settings>(
     (set, get) => ({
       allowVideoTourCall: false,
-      numberOfBookingSession: 0,
-      visitDuration: "",
+      numberOfBookingSession: 1,
+      visitDuration: "15",
       Monday: DEFAULT_DAY_SETTING,
       Tuesday: DEFAULT_DAY_SETTING,
       Wednesday: DEFAULT_DAY_SETTING,

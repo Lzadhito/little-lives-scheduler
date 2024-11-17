@@ -1,4 +1,4 @@
-import { Availability, Day, DaySetting } from "./stores/settings";
+import { Availability, DaySetting, Day } from "./types";
 
 export const deepClone = (obj: Object) => JSON.parse(JSON.stringify(obj));
 
@@ -26,7 +26,7 @@ export const generateDayAndTime = (days: Record<Day, DaySetting>): DayAndTime[] 
   Object.keys(days).forEach((day: string) => {
     const currDay = days[day as Day];
     if (!currDay.isAvailable) return;
-    currDay.availabilities.forEach((avail) => {
+    currDay.availabilities.forEach((avail: Availability) => {
       result.push({ day: day as Day, ...avail });
     });
   });

@@ -1,8 +1,8 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { deepClone } from "../utils";
-import { Availability, DaySetting } from "../types";
-import { Day, DEFAULT_DAY_SETTING } from "../constants";
+import { Day, Availability, DaySetting } from "../types";
+import { DEFAULT_DAY_SETTING } from "../constants";
 
 interface Settings {
   allowVideoTourCall: boolean;

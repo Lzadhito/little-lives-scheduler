@@ -1,29 +1,8 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { deepClone } from "../utils";
-
-export interface Availability {
-  startTime: string;
-  endTime: string;
-}
-
-export interface DaySetting {
-  isAvailable: boolean;
-  availabilities: Availability[];
-}
-
-export enum DayNumber {
-  Monday = 0,
-  Tuesday = 1,
-  Wednesday = 2,
-  Thursday = 3,
-  Friday = 4,
-  Saturday = 5,
-  Sunday = 6,
-}
-
-export type Day = "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday" | "Sunday";
-export const DAYS: Day[] = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+import { Availability, DaySetting } from "../types";
+import { Day, DEFAULT_DAY_SETTING } from "../constants";
 
 interface Settings {
   allowVideoTourCall: boolean;
@@ -40,13 +19,6 @@ interface Settings {
   setDay: (day: Day, key: keyof DaySetting, value: any) => void;
   setAvailability: (day: Day, key: keyof Availability, index: number, value: string) => void;
 }
-
-export const DEFAULT_AVAILABILITY: Availability = { startTime: "", endTime: "" };
-
-export const DEFAULT_DAY_SETTING: DaySetting = {
-  availabilities: [DEFAULT_AVAILABILITY],
-  isAvailable: false,
-};
 
 const settingsStore = create(
   persist<Settings>(

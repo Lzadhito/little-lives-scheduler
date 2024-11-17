@@ -1,8 +1,9 @@
 import { Button, Card, CardBody, Checkbox, Input, Select, SelectItem } from "@nextui-org/react";
 import { useStore } from "zustand";
-import settingsStore, { DAYS, DEFAULT_AVAILABILITY } from "../stores/settings";
+import settingsStore from "../stores/settings";
 import { FiPlusCircle, FiXCircle } from "react-icons/fi";
 import { generateTime } from "../utils";
+import { DAYS, DEFAULT_AVAILABILITY } from "../constants";
 
 export default function SettingsForm() {
   return (

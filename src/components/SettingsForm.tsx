@@ -21,7 +21,6 @@ function SettingsCard() {
   return (
     <Card className="w-fit h-fit">
       <CardBody className="space-y-4">
-        {/* TODO: handle library bug */}
         <Select
           variant="bordered"
           className="block"
@@ -68,7 +67,7 @@ function AvailabilityCard() {
         <div>Set your week recurring schedule</div>
         <div className="space-y-4 mt-4">
           {DAYS.map((day) => (
-            <div className="flex items-start">
+            <div className="flex items-start" key={day}>
               <Checkbox
                 className="mt-1 font-bold min-w-24"
                 isSelected={settings[day].isAvailable}
@@ -80,7 +79,7 @@ function AvailabilityCard() {
                 <>
                   <div className="space-y-2">
                     {settings[day].availabilities?.map((availability, index) => (
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-2" key={index}>
                         <Select
                           variant="bordered"
                           className="w-32"
@@ -88,12 +87,11 @@ function AvailabilityCard() {
                           onChange={(event) => {
                             const startIndex = times.findIndex((time) => time === event.target.value);
                             settings.setAvailability(day, "startTime", index, event.target.value);
-                            // TODO: handle choosing last time
                             settings.setAvailability(day, "endTime", index, times[startIndex + 1]);
                           }}
                           selectedKeys={new Set([availability.startTime])}
                         >
-                          {times.map((time) => (
+                          {times.slice(0, times.length - 1).map((time) => (
                             <SelectItem key={time}>{time}</SelectItem>
                           ))}
                         </Select>

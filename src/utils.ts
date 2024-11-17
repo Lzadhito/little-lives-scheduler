@@ -1,8 +1,10 @@
+import { Availability, Day, DaySetting } from "./stores/settings";
+
 export const deepClone = (obj: Object) => JSON.parse(JSON.stringify(obj));
 
 export const generateTime = (interval: number): string[] => {
-  const startHour = 7; // 7 AM
-  const endHour = 19; // 7 PM
+  const startHour = 7;
+  const endHour = 19;
   const times: string[] = [];
 
   for (let hour = startHour; hour < endHour; hour++) {
@@ -16,4 +18,18 @@ export const generateTime = (interval: number): string[] => {
   times.push(`19:00`);
 
   return times;
+};
+
+export type DayAndTime = { day: Day } & Availability;
+export const generateDayAndTime = (days: Record<Day, DaySetting>): DayAndTime[] => {
+  const result: DayAndTime[] = [];
+  Object.keys(days).forEach((day: string) => {
+    const currDay = days[day as Day];
+    if (!currDay.isAvailable) return;
+    currDay.availabilities.forEach((avail) => {
+      result.push({ day: day as Day, ...avail });
+    });
+  });
+
+  return result;
 };

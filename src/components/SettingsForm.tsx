@@ -73,7 +73,7 @@ function AvailabilityCard() {
                 isSelected={settings[day].isAvailable}
                 onValueChange={(value) => settings.setDay(day, "isAvailable", value)}
               >
-                {day}
+                {day.substring(0, 3)}
               </Checkbox>
               {settings[day].isAvailable ? (
                 <>

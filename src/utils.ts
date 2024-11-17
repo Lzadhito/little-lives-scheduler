@@ -7,7 +7,10 @@ export const deepClone = (obj: Object) => JSON.parse(JSON.stringify(obj));
 // I also dont have the time to refactor this to use my own
 import { addMinutes, format } from "date-fns";
 
-export const generateTime = (interval: number): string[] => {
+export const generateTime = (strInterval: string): string[] => {
+  if (!strInterval) return [];
+
+  const interval = Number(strInterval);
   const startHour = 7;
   const endHour = 19;
   const times: string[] = [];

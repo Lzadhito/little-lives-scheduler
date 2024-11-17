@@ -58,7 +58,7 @@ function SettingsCard() {
 function AvailabilityCard() {
   const settings = useStore(settingsStore);
 
-  const times = generateTime(Number(settings.visitDuration));
+  const times = generateTime(settings.visitDuration);
 
   return (
     <Card className="w-fit">
